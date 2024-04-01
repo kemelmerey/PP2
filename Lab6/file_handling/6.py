@@ -6,3 +6,9 @@ path = r"C:\Users\Admin\Desktop\PP2_2024\Lab6\file_handling\files_from_6ex"
 for i in range(65,91):
     name = os.path.join(path, chr(i) + ".txt")
     f = open(name, "a")
+
+    import os
+    if os.path.exists(C:\\Users\\Admin\\Desktop\\PP2_2024\\Lab6\\file_handling\\files_from_6ex):
+                      os.remove(C:\\Users\\Admin\\Desktop\PP2_2024\\Lab6\\file_handling\\files_from_6ex)
+                      
+               
