@@ -1,43 +1,36 @@
-import pygame
-import sys
+import pygame 
+ 
+ 
+pygame.init() 
 
-pygame.init()
 
-screen = pygame.display.set_mode((800, 600))
-pygame.display.set_caption('Red Ball')
+size = width, height = (500, 500) 
+screen = pygame.display.set_mode(size) 
 
-ball_x = 400
-ball_y = 300
-ball_radius = 25
+clock = pygame.time.Clock() 
 
-while True:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            pygame.quit()
-            sys.exit()
-
-    keys = pygame.key.get_pressed()
-
-    if keys[pygame.K_UP]:
-        ball_y -= 20
-    if keys[pygame.K_DOWN]:
-        ball_y += 20
-    if keys[pygame.K_LEFT]:
-        ball_x -= 20
-    if keys[pygame.K_RIGHT]:
-        ball_x += 20
-
-    if ball_x - ball_radius < 0:
-        ball_x = ball_radius
-    if ball_x + ball_radius > screen.get_width():
-        ball_x = screen.get_width() - ball_radius
-    if ball_y - ball_radius < 0:
-        ball_y = ball_radius
-    if ball_y + ball_radius > screen.get_height():
-        ball_y = screen.get_height() - ball_radius
-
-    screen.fill((255, 255, 255))
-
-    pygame.draw.circle(screen, (255, 0, 0), (ball_x, ball_y), ball_radius)
-
-    pygame.display.update()
+done = False 
+ 
+coordinats = [0, 0] 
+radius = 25 
+ 
+while not done: 
+    for event in pygame.event.get(): 
+        if event.type == pygame.QUIT: 
+            done = True 
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_UP: 
+            coordinats[1] -= 20 
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_DOWN: 
+            coordinats[1] += 20 
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_LEFT: 
+            coordinats[0] -= 20 
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_RIGHT: 
+            coordinats[0] += 20 
+     
+    coordinats[1] = max(radius, min(coordinats[1], height - radius)) 
+    coordinats[0] = max(radius, min(coordinats[0], width - radius)) 
+     
+    screen.fill((255, 255, 255)) 
+    pygame.draw.circle(screen, (255, 0, 0), coordinats, radius) 
+    pygame.display.flip() 
+    clock.tick(60)
