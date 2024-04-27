@@ -1,6 +1,5 @@
 import psycopg2
 from config import params
-print("Params:", params)
 db=psycopg2.connect(**params)
 
 current=db.cursor()

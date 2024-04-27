@@ -22,9 +22,9 @@ img_right = pygame.transform.scale(img_right, (screen_w, screen_h))
 
 def print_img_by_degree(image, degree): # function for drawing image by given degree
     image = pygame.transform.rotate(image, degree) # at first rotate
-    rect = image.get_rect() # create rect object with legth same with image
-    rect.center = win.get_rect().center # sets center coord ro rect object
-    win.blit(image, rect) # draw image onto win in the position defined by rect
+    rect = image.get_rect() # create rect object with length same with image
+    rect.center = win.get_rect().center # sets center coordinate to rect object
+    win.blit(image, rect) # draw image onto window in the position defined by rect
 clock = pygame.time.Clock()
 run = 1
 

@@ -117,33 +117,12 @@ class BIGCoin(pygame.sprite.Sprite):
     def draw(self, screen):
         screen.blit(self.image, self.rect)
 
-# # класс сокровища (большой монеты)
-# class Treasure(pygame.sprite.Sprite):
-#     def __init__(self):
-#         super().__init__()
-#         self.image = pygame.image.load("lab 8/items/treasure.png")
-#         self.image = pygame.transform.scale(self.image,(50,50))
-#         self.rect = self.image.get_rect()
-#         self.rect.center = (random.randint(50, SCREEN_WIDTH - 50), random.randint(-1500,-500 ))
-
-#     def update(self):
-#         self.rect.move_ip(0, 5)
-#         if(self.rect.top > SCREEN_HEIGHT):
-#             self.top = 0
-#             self.rect.center = (random.randint(30, 350), random.randint(-1500,-500 ))
-
-#     def spawn(self):
-#         self.rect.center = (random.randint(30, 350), random.randint(-1500,-500 ))
-
-#     def draw(self, screenace):
-#         screenace.blit(self.image, self.rect)
 
 # cоздание cпрайт групп
 P1 = Player()
 E1 = Enemy()
 C1 = Coin()
 C2 = BIGCoin()
-# T1 = Treasure()
 
 enemies = pygame.sprite.Group()
 enemies.add(E1)
@@ -151,8 +130,6 @@ coins = pygame.sprite.Group()
 coins.add(C1)
 Bcoins = pygame.sprite.Group()
 Bcoins.add(C2)
-# Treas = pygame.sprite.Group()
-# Treas.add(T1)
 
 k = 1
 while True:
@@ -171,10 +148,8 @@ while True:
     E1.update()
     C1.update()
     C2.update()
-    # T1.update()
 
     if pygame.sprite.spritecollideany(P1, coins):
-        # pygame.mixer.Sound('coin.mp3').play()
         NUM_OF_COINS += 1
         if NUM_OF_COINS >= k * 50:
             ENEMY_STEP += 1
@@ -182,20 +157,11 @@ while True:
         C1.spawn() #как только игрок тронул монету, нужно создать новую
 
     if pygame.sprite.spritecollideany(P1, Bcoins):
-        # pygame.mixer.Sound('lab 8\items\coin.mp3').play()
         NUM_OF_COINS += 5
         if NUM_OF_COINS >= k * 50:
             ENEMY_STEP += 1
             k += 1
         C2.spawn()
-
-    # if pygame.sprite.spritecollideany(P1, Treas):
-    #     # pygame.mixer.Sound('lab 8\items\coin.mp3').play()
-    #     NUM_OF_COINS += 10
-    #     if NUM_OF_COINS >= k * 50:
-    #         ENEMY_STEP += 1
-    #         k += 1
-    #     T1.spawn() 
 
     if pygame.sprite.spritecollideany(P1, enemies):
         pygame.mixer.Sound('crash.wav').play()
